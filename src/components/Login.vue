@@ -38,17 +38,8 @@
 </template>
 <script>
 
-// const guardaDatos = (user) => {
-//   let usuario = {
-//     uid: user.uid,
-//     nombre: user.displayName,
-//     email: user.email,
-//     foto: user.photoURL,
-//   }
-//   firebase.database().ref('Users/' + user.uid)
-//   .set(usuario)
-// };
 import firebase from 'firebase'
+import data from '@/main'
 export default {
   name: 'login',
   data: function() {
@@ -58,12 +49,9 @@ export default {
     }
   },
   methods: {
-    // guardarDato: function(){
-    //
-    // },
     login: function() {
       firebase.auth().signInWithEmailAndPassword(this.email, this.password)
-      .then(user => alert('Bien hecho, ahora estas conectado', this.$router.replace('hello'), guardaDatos(user)))
+      .then(user => alert('Bien hecho, ahora estas conectado', this.$router.replace('hello'), data.guardaDatos(user.user)))
       .catch(error => alert('error.message'))
     },
     facebook: function() {
