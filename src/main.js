@@ -66,4 +66,4 @@ const validadorPassword = (password) => {
     };
 };
 
- export default { guardaDatos, verificar, validadorNombre, validadorEmail, validadorPassword, foto }
+ export default { guardaDatos, verificar, validadorNombre, validadorEmail, validadorPassword }
