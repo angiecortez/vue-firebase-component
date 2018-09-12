@@ -27,6 +27,9 @@
       </div>
     </header>
     <!-- <button v-on:click="logout">Logout</button> -->
+    <Post/>
+
+
 
   </div>
 </template>
@@ -35,6 +38,7 @@
 
 import dataFirebase from '@/main'
 import firebase from 'firebase'
+import Post from '@/components/Post'
 export default {
   name: 'HelloWorld',
   data () {
@@ -58,6 +62,9 @@ export default {
     logout: function(){
       firebase.auth().signOut().then(()=> this.$router.replace('login'))
     }
+  },
+  components: {
+    Post
   }
 }
 
