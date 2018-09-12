@@ -39,7 +39,7 @@
 <script>
 
 import firebase from 'firebase'
-import data from '@/main'
+// import data from '@/main'
 export default {
   name: 'login',
   data: function() {
