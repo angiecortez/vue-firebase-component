@@ -12,7 +12,7 @@
 </template>
 <script>
 import firebase from 'firebase'
-import data from '@/main'
+import dataFirebase from '@/main'
 
 export default {
   name: 'signUp',
@@ -24,29 +24,18 @@ export default {
     }
   },
   methods: {
-    guardaDatos: function(user) {
-      let usuario = {
-        uid: user.uid,
-        nombre: this.name,
-        email: user.email,
-        foto: user.photoURL,
-      }
-      firebase.database().ref('Users/' + user.uid)
-      .set(usuario)
-    },
     signUp: function() {
       firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
       .then(result => {
         let user = result.user
-        guardaDatos(user)
-        // const user = {
-        //   uid: result.user.uid,
-        //   displayName: this.name,
-        //   email: result.user.email,
-        //   photoURL: 'http://subirimagen.me/uploads/20180725011911.png',
-        // // }
-        // data.guardaDatos(user)
-        // data.verificar();
+        const usuario = {
+          uid: result.user.uid,
+          displayName: this.name,
+          email: user.email,
+          photoURL: 'http://subirimagen.me/uploads/20180725011911.png'
+        }
+        dataFirebase.guardaDatos(usuario)
+        dataFirebase.verificar();
         this.$router.replace('hello')
       })
       .catch(error => alert('opps' + error.message))

@@ -39,7 +39,7 @@
 <script>
 
 import firebase from 'firebase'
-// import data from '@/main'
+import dataFirebase from '@/main'
 export default {
   name: 'login',
   data: function() {
@@ -51,7 +51,7 @@ export default {
   methods: {
     login: function() {
       firebase.auth().signInWithEmailAndPassword(this.email, this.password)
-      .then(user => alert('Bien hecho, ahora estas conectado', this.$router.replace('hello'), data.guardaDatos(user.user)))
+      .then(user => alert('Bien hecho, ahora estas conectado', this.$router.replace('hello')))
       .catch(error => alert('error.message'))
     },
     facebook: function() {
@@ -61,8 +61,8 @@ export default {
       })
       firebase.auth().signInWithPopup(provider).then((result) => {
           const user = result.user;
+          dataFirebase.guardaDatos(user)
           this.$router.replace('hello')
-          // guardaDatos(user);
       }).catch((error)=> {
         alert('err'+error.message)
       })
@@ -71,8 +71,9 @@ export default {
         let provider = new firebase.auth.GoogleAuthProvider()
         firebase.auth().signInWithPopup(provider).then((result)=> {
           let user = result.user
+          console.log(user);
+          dataFirebase.guardaDatos(user)
           this.$router.replace('hello')
-          // guardaDatos(user);
         })
     }
   }
@@ -116,21 +117,4 @@ export default {
   margin-top: 5px;
 }
 
-  /* .login{
-    margin-top: 40px;
-  }
-  input{
-    margin: 10px 0;
-    width: 10%;
-    padding: 15px;
-  }
-
-  p{
-    margin-top: 40px;
-    font-size: 13px;
-  }
-  p a{
-    text-decoration: underline;
-    cursor: pointer;
-  } */
 </style>

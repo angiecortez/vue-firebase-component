@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
+import Post from '@/components/Post'
 import firebase from 'firebase'
 
 
@@ -36,6 +37,11 @@ let router = new Router({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      path: '/post',
+      name: 'Post',
+      component: Post
     }
   ]
 })

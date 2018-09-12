@@ -7,7 +7,10 @@
         <div id="content" class="navbar-brand1"></div>
         <div class="media">
           <div class="media-left divPhoto">
-            <!-- </a><img src="../src/image/icon.png" class="media-object photo-profile"  style="width:75px; height:auto; border-radius:50px" alt=""> -->
+          </a><img  :src="photo"  style="width:75px; height:auto; border-radius:50px" alt="">
+          <!-- <div>
+            <img :src="photo" alt="">
+          </div> -->
             <a class="navbar-brand">Ambientalist Lover</a>
           </div>
         </div>
@@ -16,6 +19,9 @@
             <div class="show" id="buttons">
             </div>
             <button id="close" v-on:click="logout" class="btn btn-info my-2 my-sm-0 ml-2 hiden">Cerrar sesión</button>
+            <p>{{ name }}</p>
+
+            <!-- <button id="close" v-on:click="sayHello" class="btn btn-info my-2 my-sm-0 ml-2 hiden">Saludar </button> -->
           </div>
         </nav>
       </div>
@@ -26,13 +32,27 @@
 </template>
 
 <script>
+
+import dataFirebase from '@/main'
 import firebase from 'firebase'
 export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      // msg: 'Welcome to Your Vue.js App'
+      name: '',
+      photo: ''
     }
+  },
+  created(){
+    let vm = this
+    let userUid = firebase.auth().currentUser.uid;
+    firebase.database().ref('Users/' + userUid).on('value', (userRef) => {
+      let user = userRef.val();
+      vm.user = user
+      vm.name = vm.user.nombre
+      vm.photo = vm.user.foto
+    })
   },
   methods: {
     logout: function(){
@@ -40,6 +60,8 @@ export default {
     }
   }
 }
+
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

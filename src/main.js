@@ -15,6 +15,16 @@ let config = {
   messagingSenderId: "318300408911"
 }
 firebase.initializeApp(config)
+
+const foto = () => {
+  let userUid = firebase.auth().currentUser.uid
+  firebase.database().ref('Users/' + userUid).on('value', (userRef) => {
+    let user = userRef.val()
+    // foto.innerHTML = `Bienvenid@  ${user.photoURL}`
+  })
+}
+
+
 firebase.auth().onAuthStateChanged(user => {
   if(!app){
     /* eslint-disable no-new */
@@ -66,4 +76,4 @@ const validadorPassword = (password) => {
     };
 };
 
- export default {guardaDatos, verificar, validadorNombre, validadorEmail, validadorPassword}
+ export default { guardaDatos, verificar, validadorNombre, validadorEmail, validadorPassword, foto }
