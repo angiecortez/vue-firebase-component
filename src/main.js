@@ -1,11 +1,16 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import firebase from 'firebase'
+import firebase from 'firebase/app'
+import 'firebase/firestore'
+import Vuefire from 'Vuefire'
+
+
 
 Vue.config.productionTip = false
 
 let app;
+Vue.use(Vuefire)
 let config = {
   apiKey: "AIzaSyCt3mRnncuAu3A0hi2yxxyGEFwX7hBioZ4",
   authDomain: "redsocialv2.firebaseapp.com",
@@ -25,7 +30,7 @@ firebase.auth().onAuthStateChanged(user => {
     })
   }
 })
-
+export const postRef = firebase.database().ref('Post/')
 const guardaDatos = (user) => {
   let usuario = {
     uid: user.uid,
@@ -35,6 +40,8 @@ const guardaDatos = (user) => {
   }
   firebase.database().ref('Users/' + user.uid)
   .set(usuario)
+  // db.collection('users').doc(setUser.id).set(setUser);
+
 };
 const verificar = () => {
   let user = firebase.auth().currentUser;
@@ -65,5 +72,8 @@ const validadorPassword = (password) => {
         return false;
     };
 };
-
- export default { guardaDatos, verificar, validadorNombre, validadorEmail, validadorPassword }
+export const db = firebase.firestore()
+db.settings({
+  timestampsInSnapshots: true,
+});
+export default { guardaDatos, verificar, validadorNombre, validadorEmail, validadorPassword }

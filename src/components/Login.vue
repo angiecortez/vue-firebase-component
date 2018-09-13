@@ -39,6 +39,7 @@
 <script>
 
 import firebase from 'firebase'
+// import db from '@/db'
 import dataFirebase from '@/main'
 export default {
   name: 'login',

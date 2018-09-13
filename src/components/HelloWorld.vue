@@ -1,32 +1,26 @@
 <template>
   <div>
-    <!-- <h1>{{ msg }}</h1> -->
     <header>
       <div class="contenido">
         <nav class="navbar navbar-light" style="background-color: #A5DF00;">
         <div id="content" class="navbar-brand1"></div>
         <div class="media">
           <div class="media-left divPhoto">
-          </a><img  :src="photo"  style="width:75px; height:auto; border-radius:50px" alt="">
-          <!-- <div>
-            <img :src="photo" alt="">
-          </div> -->
+          <img src="@/image/icon.png" class="media-object photo-profile"  style="width:70px; height:auto; border-radius:50px" alt="">
             <a class="navbar-brand">Ambientalist Lover</a>
           </div>
         </div>
-
           <div class="form-inline">
-            <div class="show" id="buttons">
-            </div>
-            <button id="close" v-on:click="logout" class="btn btn-info my-2 my-sm-0 ml-2 hiden">Cerrar sesión</button>
-            <p>{{ name }}</p>
+            <img  :src="photo"  style="width:70px; height:auto; border-radius:50px" alt="Foto">
 
-            <!-- <button id="close" v-on:click="sayHello" class="btn btn-info my-2 my-sm-0 ml-2 hiden">Saludar </button> -->
+            <p>{{ name }}</p>
+            <button id="close" v-on:click="logout" class="btn btn-info my-2 my-sm-0 ml-2 hiden">Cerrar sesión</button>
           </div>
         </nav>
       </div>
     </header>
     <!-- <button v-on:click="logout">Logout</button> -->
+    <Navbar/>
     <Post/>
 
 
@@ -35,10 +29,12 @@
 </template>
 
 <script>
+// let userProfile = {}
 
 import dataFirebase from '@/main'
 import firebase from 'firebase'
 import Post from '@/components/Post'
+import Navbar from '@/components/Navbar'
 export default {
   name: 'HelloWorld',
   data () {
@@ -53,6 +49,7 @@ export default {
     let userUid = firebase.auth().currentUser.uid;
     firebase.database().ref('Users/' + userUid).on('value', (userRef) => {
       let user = userRef.val();
+      // userProfile = user
       vm.user = user
       vm.name = vm.user.nombre
       vm.photo = vm.user.foto
@@ -64,7 +61,8 @@ export default {
     }
   },
   components: {
-    Post
+    Post,
+    Navbar
   }
 }
 
