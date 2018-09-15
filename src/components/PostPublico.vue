@@ -2,7 +2,7 @@
   <div class="col-8 ml-5">
     <br>
     <div id="divPostsArea" class="form-post hiden">
-      <form @submit.prevent="addPost(newPosts, selectOption)">
+      <!-- <form @submit.prevent="addPost(newPosts, selectOption)">
         <div class="form-group">
           <label for="txtAreaPost">
             <b>Ideas para compartir</b>
@@ -16,15 +16,15 @@
           </select>
           <button type="submit" class="btn btn-primary form-btn">Publicar</button>
         </div>
-      </form>
+      </form> -->
 
       <ul class="nav nav-tabs">
-        <li class="nav-item" @click="listarPublicos" v-if='!selectOption'>
-          <a class="nav-link small text-uppercase active">Publico</a>
+        <!-- <li class="nav-item" @click="listarPublicos" v-if='selectOption'>
+          <a class="nav-link small text-uppercase active">Privado</a>
 
-        </li>
-        <li class="nav-item" @click="listarPrivados" v-if="selectOption">
-          <a class="nav-link small text-uppercase">Privado</a>
+        </li> -->
+        <li class="nav-item" @click="listarPrivados" v-if="!selectOption">
+          <a class="nav-link small text-uppercase">Publico</a>
         </li>
       </ul>
         <!-- <li class="nav-item"><a data-toggle="tab" class="nav-link small text-uppercase active">Público</a>
@@ -97,13 +97,13 @@ import { db } from '@/main'
 let userProfile = {}
 
 export default {
-  name:'Post',
+  name:'PostPublico',
   data(){
     return{
       newPosts: null,
       name: "",
       photo: "",
-      selectOption: true,
+      selectOption: false,
       posts : []
     }
   },
@@ -141,9 +141,10 @@ export default {
       }
     },
      listarPrivados() {
-
-     // if(this.selectOption === true){
-     // }
+       alert('privado')
+     if(this.selectOption === true){
+       this.filterPost
+     }
         // let query = db.collection("posts")
                         // .where("type", "==", "Privado")
                         // .where("userProfile.uid","==",`${userProfile.uid}`)

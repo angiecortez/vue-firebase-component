@@ -72,7 +72,7 @@ export default {
         let provider = new firebase.auth.GoogleAuthProvider()
         firebase.auth().signInWithPopup(provider).then((result)=> {
           let user = result.user
-          console.log(user);
+          // console.log(user);
           dataFirebase.guardaDatos(user)
           this.$router.replace('hello')
         })

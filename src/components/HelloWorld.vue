@@ -22,6 +22,7 @@
     <!-- <button v-on:click="logout">Logout</button> -->
     <Navbar/>
     <Post/>
+    <PostPublico/>
 
 
 
@@ -34,6 +35,7 @@
 import dataFirebase from '@/main'
 import firebase from 'firebase'
 import Post from '@/components/Post'
+import PostPublico from '@/components/PostPublico'
 import Navbar from '@/components/Navbar'
 export default {
   name: 'HelloWorld',
@@ -62,6 +64,7 @@ export default {
   },
   components: {
     Post,
+    PostPublico,
     Navbar
   }
 }
