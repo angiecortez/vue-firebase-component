@@ -2,14 +2,14 @@
   <div>
     <div class="menu__tab">
       <a v-bind:class="{ active: selectOption }"
-         @click="selectOption = true"
+         @click="selectOptionView = true"
          class="nav-link small text-uppercase active">Privado</a>
 
-      <a v-bind:class="{ active: selectOption }"
-         @click="selectOption = false"
+      <a v-bind:class="{ active: selectOptionView }"
+         @click="selectOptionView = false"
          class="nav-link small text-uppercase">Publico</a>
     </div>
-    <div v-if="selectOption">
+    <div v-if="selectOptionView">
       <posts title="Privados" :posts="postsPrivado"></posts>
     </div>
     <div v-else>
@@ -29,14 +29,14 @@ export default {
 
   data () {
     return {
-      selectOption: true,
+      selectOptionView: true,
       posts: [],
       postsPrivado: [],
       postsPublico: [],
     }
   },
 
-  firestore() {
+  firestore () {
     return {
       posts: db.collection('posts'),
       postsPrivado: db.collection('posts')

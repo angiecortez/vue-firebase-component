@@ -12,7 +12,6 @@
         </div>
           <div class="form-inline">
             <img  :src="photo"  style="width:70px; height:auto; border-radius:50px" alt="Foto">
-
             <p>{{ name }}</p>
             <button id="close" v-on:click="logout" class="btn btn-info my-2 my-sm-0 ml-2 hiden">Cerrar sesión</button>
           </div>

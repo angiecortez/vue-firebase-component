@@ -2,7 +2,7 @@
   <div class="col-8 ml-5">
     <br>
     <div id="divPostsArea" class="form-post hiden">
-      <form @submit.prevent="addPost(newPosts, selectOption)">
+      <form @submit.prevent="addPost()">
         <div class="form-group">
           <label for="txtAreaPost">
             <b>Ideas para compartir</b>
@@ -34,7 +34,7 @@ export default {
       newPosts: null,
       name: '',
       photo: '',
-      selectOption: true,
+      selectOption: null,
       posts: []
     }
   },
@@ -55,15 +55,16 @@ export default {
       if (this.posts.type === 'Privado') {
       }
     },
-    addPost (newPosts, selectOption) {
+    addPost () {
       db.collection('posts').add({
-        postUser: newPosts,
+        postUser: this.newPosts,
         userProfile: userProfile,
         like: 0,
-        type: selectOption,
+        type: this.selectOption,
         createdAt: new Date()
       })
       this.newPosts = ''
+      this.selectOption = ''
     }
   }
 }

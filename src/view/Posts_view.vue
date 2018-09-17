@@ -53,14 +53,14 @@ export default {
       return post.userProfile.uid === firebase.auth().currentUser.uid
     },
     editar1 (post) {
-      document.getElementById(post.id+'btnEditar').style.display = 'none'
-      document.getElementById(post.id+'btnGuardar').style.display = 'inline-block'
+      document.getElementById(post.id + 'btnEditar').style.display = 'none'
+      document.getElementById(post.id + 'btnGuardar').style.display = 'inline-block'
       document.getElementById(post.id).setAttribute('contenteditable', true)
     },
     guardar1 (post) {
       document.getElementById(post.id).setAttribute('contenteditable', false)
-      document.getElementById(post.id+'btnEditar').style.display = 'inline-block'
-      document.getElementById(post.id+'btnGuardar').style.display = 'none'
+      document.getElementById(post.id + 'btnEditar').style.display = 'inline-block'
+      document.getElementById(post.id + 'btnGuardar').style.display = 'none'
       let contenidoEditado = document.getElementById(post.id)
       let newContent = contenidoEditado.textContent
       const confirmado = confirm('Estas seguro de Editar la publicación')
@@ -73,9 +73,6 @@ export default {
           console.error('Error updating document: ', error)
         })
       }
-    },
-    getPosts (post) {
-      console.log(contenidoEditado.textContent)
     }
   }
 }

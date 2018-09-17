@@ -51,18 +51,18 @@ export default {
     }
   },
   methods: {
-    signUp: function() {
+    signUp: function () {
       firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
-      .then(result => {
-        let user = result.user
-        const usuario = {
-          uid: result.user.uid,
-          displayName: this.name,
-          email: user.email,
-          photoURL: 'http://subirimagen.me/uploads/20180725011911.png'
-         }
-         dataFirebase.guardaDatos(usuario)
-         dataFirebase.verificar()
+        .then(result => {
+          let user = result.user
+          const usuario = {
+            uid: result.user.uid,
+            displayName: this.name,
+            email: user.email,
+            photoURL: 'http://subirimagen.me/uploads/20180725011911.png'
+          }
+          dataFirebase.guardaDatos(usuario)
+          dataFirebase.verificar()
           this.$router.replace('hello')
         }).catch(error => alert('opps' + error.message))
     }

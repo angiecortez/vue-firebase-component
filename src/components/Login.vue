@@ -41,27 +41,27 @@ export default {
     }
   },
   methods: {
-    login: function() {
+    login: function () {
       firebase.auth().signInWithEmailAndPassword(this.email, this.password)
-      .then(user => alert('Bien hecho, ahora estas conectado', this.$router.replace('hello')))
-      .catch(error => alert('error.message'))
+        .then(user => alert('Bien hecho, ahora estas conectado', this.$router.replace('hello')))
+        .catch(error => alert(error, 'error.message'))
     },
-    facebook: function() {
-      let provider = new firebase.auth.FacebookAuthProvider();
+    facebook: function () {
+      let provider = new firebase.auth.FacebookAuthProvider()
       provider.setCustomParameters({
         'display': 'popup'
       })
       firebase.auth().signInWithPopup(provider).then((result) => {
-        const user = result.user;
+        const user = result.user
         dataFirebase.guardaDatos(user)
         this.$router.replace('hello')
-      }).catch((error)=> {
-        alert('err'+error.message)
+      }).catch((error) => {
+        alert('err' + error.message)
       })
     },
-    gmail: function() {
+    gmail: function () {
       let provider = new firebase.auth.GoogleAuthProvider()
-      firebase.auth().signInWithPopup(provider).then((result)=> {
+      firebase.auth().signInWithPopup(provider).then((result) => {
         let user = result.user
         dataFirebase.guardaDatos(user)
         this.$router.replace('hello')
