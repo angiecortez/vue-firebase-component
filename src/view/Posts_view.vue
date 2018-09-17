@@ -10,14 +10,14 @@
         <p class="data__type">Tipo: {{ post.type }}</p>
         <p class="data__email">Email: {{ post.userProfile.email }}</p>
         <div class="data__post">
-          <p :contenteditable='guardar' v-model="publicacion">{{ post.postUser }}</p>
+          <p @keyup.enter="guardar1(post)" :id="post.id">{{ post.postUser }}</p>
+          <!-- <p :contenteditable='guardar' @keyup.enter="guardar1(post)" :id="post.id">{{ post.postUser }}</p> -->
         </div>
         <!-- <div class="data__like">Me gusta {{ post.id }}</div> -->
         <button @click="countLikes(post)">Me gusta {{ post.like }}</button>
-
         <section v-if="compareId(post)">
-          <button @click="editar1" type="button" v-if="editar" class="btn btn-primary btn-sm">Editar</button>
-          <button @click="guardar1(post)" type="button" v-if="guardar" class="btn btn-primary btn-sm">Guardar</button>
+          <button @click="editar1(post)" type="button" :id="post.id+'btnEditar'" class="btn btn-primary btn-sm">Editar</button>
+          <button @click="guardar1(post)" type="button" style="display:none" :id="post.id+'btnGuardar'" class="btn btn-primary btn-sm">Guardar</button>
           <button @click="eliminarPost(post)" type="button" class="btn btn-primary btn-sm">Eliminar</button>
         </section>
       </div>
@@ -31,14 +31,6 @@ import { db } from '@/main'
 export default {
   name: 'post_view',
   props: ['title', 'posts'],
-  data () {
-    return {
-      editar: true,
-      guardar: false,
-      editando: false,
-      publicacion: ''
-    }
-  },
   methods: {
     countLikes (post) {
       let likes = post.like
@@ -60,31 +52,34 @@ export default {
     compareId (post) {
       return post.userProfile.uid === firebase.auth().currentUser.uid
     },
-    editar1 () {
-      this.editando = true
-      this.editar = false
-      this.guardar = true
+    editar1 (post) {
+      document.getElementById(post.id+'btnEditar').style.display = 'none'
+      document.getElementById(post.id+'btnGuardar').style.display = 'inline-block'
+      document.getElementById(post.id).setAttribute('contenteditable', true)
     },
     guardar1 (post) {
-      this.editando = false
-      this.editar = true
-      this.guardar = false
+      document.getElementById(post.id).setAttribute('contenteditable', false)
+      document.getElementById(post.id+'btnEditar').style.display = 'inline-block'
+      document.getElementById(post.id+'btnGuardar').style.display = 'none'
+      let contenidoEditado = document.getElementById(post.id)
+      let newContent = contenidoEditado.textContent
       const confirmado = confirm('Estas seguro de Editar la publicación')
       if (confirmado) {
-        db.collection("posts").doc(post.id).update({
-          post: this.publicacion
+        db.collection('posts').doc(post.id).update({
+          postUser: newContent
         }).then(() => {
           console.log('Document successfully updated!')
         }).catch((error) => {
           console.error('Error updating document: ', error)
         })
       }
+    },
+    getPosts (post) {
+      console.log(contenidoEditado.textContent)
     }
   }
 }
-
 </script>
-
 <style scoped>
 .post__container {
   text-align: left;

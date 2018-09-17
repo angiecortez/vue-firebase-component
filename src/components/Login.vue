@@ -9,8 +9,6 @@
           <form>
             <div class="form-group">
               <i class="material-icons prefixo">email</i>
-              <!-- <i class="material-icons prefix">email</i> -->
-
               <input class="form-control" type="email" v-model="email" placeholder="Email">
             </div>
             <div class="form-group">
@@ -20,17 +18,11 @@
             <button v-on:click="login" class="btn btn-success">Connection</button><br>
             <button v-on:click="facebook" class="btn btn-success mt-5">Facebook</button>
             <button v-on:click="gmail" class="btn Danger mt-5 ml-2">Gmail</button>
-
           </form>
         </div>
         <div class="col-12 link-part">
-          <!-- <p>No tienes cuenta? <router-link to="/signup">Crea una aqui tu cuenta</router-link></p> -->
-
-          <a href="#">Olvidaste tu contraseña</a>
         </div>
         <p>No tienes cuenta? <router-link to="/signup">Crea una aqui tu cuenta</router-link></p>
-
-
       </div>
     </div>
 
@@ -39,11 +31,10 @@
 <script>
 
 import firebase from 'firebase'
-// import db from '@/db'
 import dataFirebase from '@/main'
 export default {
   name: 'login',
-  data: function() {
+  data () {
     return {
       email: '',
       password: ''
@@ -72,14 +63,12 @@ export default {
       let provider = new firebase.auth.GoogleAuthProvider()
       firebase.auth().signInWithPopup(provider).then((result)=> {
         let user = result.user
-          // console.log(user);
         dataFirebase.guardaDatos(user)
         this.$router.replace('hello')
       })
     }
   }
 }
-
 </script>
 <style>
 .margin-section{
