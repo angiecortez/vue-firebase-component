@@ -20,7 +20,7 @@
       </div>
     </header>
     <!-- <button v-on:click="logout">Logout</button> -->
-    <Navbar/>
+    <Carrusel/>
     <Post/>
     <Listado/>
 
@@ -31,7 +31,7 @@
 // import dataFirebase from '@/main'
 import firebase from 'firebase'
 import Post from '@/components/Post'
-import Navbar from '@/components/Navbar'
+import Carrusel from '@/components/Carrusel'
 import Listado from '@/components/Listado'
 export default {
   name: 'Home',
@@ -58,7 +58,7 @@ export default {
   },
   components: {
     Post,
-    Navbar,
+    Carrusel,
     Listado
   }
 }

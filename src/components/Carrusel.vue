@@ -27,7 +27,7 @@
 
 <script>
 export default {
-  name: 'Navbar',
+  name: 'Carrussel',
   data () {
     return {
     }

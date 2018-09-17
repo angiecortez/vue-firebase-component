@@ -16,8 +16,8 @@
         <button @click="countLikes(post)">Me gusta {{ post.like }}</button>
 
         <section v-if="compareId(post)">
-          <button @click="editar1" type="button" v-if="editar" class="btn btn-primary btn-sm">Editar</button>
-          <button @click="guardar1" type="button" v-if="guardar" class="btn btn-primary btn-sm">Guardar</button>
+          <button @click="editar1" type="button" v-if="editar" class="btn btn-primary btn-sm">Guardar</button>
+          <button @click="guardar1" type="button" v-if="guardar" class="btn btn-primary btn-sm">Editar</button>
           <button @click="eliminarPost(post)" type="button" class="btn btn-primary btn-sm">Eliminar</button>
         </section>
       </div>
