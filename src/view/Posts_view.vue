@@ -16,8 +16,8 @@
         <button @click="countLikes(post)">Me gusta {{ post.like }}</button>
 
         <section v-if="compareId(post)">
-          <button @click="editar" type="button" v-if="editar"class="btn btn-primary btn-sm">Editar</button>
-          <button @click="Guardar" type="button" v-if="guardar" class="btn btn-primary btn-sm">Guardar</button>
+          <button @click="editar1" type="button" v-if="editar" class="btn btn-primary btn-sm">Editar</button>
+          <button @click="guardar1" type="button" v-if="guardar" class="btn btn-primary btn-sm">Guardar</button>
           <button @click="eliminarPost(post)" type="button" class="btn btn-primary btn-sm">Eliminar</button>
         </section>
       </div>
@@ -33,7 +33,7 @@ export default {
   props: ['title', 'posts'],
   data () {
     return {
-      editar: false,
+      editar: true,
       guardar: false,
       editando: false
     }
@@ -47,28 +47,28 @@ export default {
       })
     },
     eliminarPost (post) {
-      let r = confirm("Estas seguro de Eliminar la publicación");
+      let r = confirm('Estas seguro de Eliminar la publicación')
       if (r) {
-          db.collection("posts").doc(post.id).delete().then(function() {
-              console.log("Document successfully deleted!")
-          }).catch((error) => {
-              console.error("Error removing document: ", error)
-          })
+        db.collection('posts').doc(post.id).delete().then(() => {
+          console.log('Document successfully deleted!')
+        }).catch((error) => {
+          console.error('Error removing document: ', error)
+        })
       }
     },
     compareId (post) {
-      return post.userProfile.uid == firebase.auth().currentUser.uid
-    },
-    Guardar () {
-      this.editar = false
-      this.guardar =  true
-      this.editando = false
+      return post.userProfile.uid === firebase.auth().currentUser.uid
     },
     editar1 () {
+      this.editando = true
       this.editar = false
-      this.guardar =  true
-      this.editando = false
+      this.guardar = true
     },
+    guardar1 () {
+      this.editando = false
+      this.editar = true
+      this.guardar = false
+    }
   }
 }
 </script>

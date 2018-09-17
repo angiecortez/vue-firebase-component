@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 // <!--  IMPORTANDO COMPONENTES-->
-import HelloWorld from '@/components/HelloWorld'
+import Home from '@/components/Home'
 import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
 import Post from '@/components/Post'
@@ -27,8 +27,8 @@ let router = new Router({
     },
     {
       path: '/hello',
-      name: 'HelloWorld',
-      component: HelloWorld,
+      name: 'Home',
+      component: Home,
       meta: {
         requiresAuth: true
       }

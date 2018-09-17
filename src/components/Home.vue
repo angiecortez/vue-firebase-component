@@ -34,7 +34,7 @@ import Post from '@/components/Post'
 import Navbar from '@/components/Navbar'
 import Listado from '@/components/Listado'
 export default {
-  name: 'HelloWorld',
+  name: 'Home',
   data () {
     return {
       name: '',

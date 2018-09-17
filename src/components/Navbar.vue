@@ -26,12 +26,10 @@
 </template>
 
 <script>
-// import firebase from 'firebase'
 export default {
   name: 'Navbar',
   data () {
     return {
-      // msg: 'Welcome to Your Vue.js App'
     }
   }
 }

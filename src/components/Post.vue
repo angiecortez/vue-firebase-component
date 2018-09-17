@@ -17,17 +17,12 @@
           <button type="submit" class="btn btn-primary form-btn">Publicar</button>
         </div>
       </form>
-
-      <!-- SELECCIONADOR DE POST PUBLICOS Y PRIVADOS -->
-
     </div>
 </div>
 </template>
 
 <script>
 import firebase from 'firebase'
-// import dataFirebase from '@/main'
-import { postRef } from '@/main'
 import { db } from '@/main'
 
 let userProfile = {}

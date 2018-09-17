@@ -58,24 +58,24 @@ export default {
     facebook: function() {
       let provider = new firebase.auth.FacebookAuthProvider();
       provider.setCustomParameters({
-      'display': 'popup'
+        'display': 'popup'
       })
       firebase.auth().signInWithPopup(provider).then((result) => {
-          const user = result.user;
-          dataFirebase.guardaDatos(user)
-          this.$router.replace('hello')
+        const user = result.user;
+        dataFirebase.guardaDatos(user)
+        this.$router.replace('hello')
       }).catch((error)=> {
         alert('err'+error.message)
       })
     },
     gmail: function() {
-        let provider = new firebase.auth.GoogleAuthProvider()
-        firebase.auth().signInWithPopup(provider).then((result)=> {
-          let user = result.user
+      let provider = new firebase.auth.GoogleAuthProvider()
+      firebase.auth().signInWithPopup(provider).then((result)=> {
+        let user = result.user
           // console.log(user);
-          dataFirebase.guardaDatos(user)
-          this.$router.replace('hello')
-        })
+        dataFirebase.guardaDatos(user)
+        this.$router.replace('hello')
+      })
     }
   }
 }
