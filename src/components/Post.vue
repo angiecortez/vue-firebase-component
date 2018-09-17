@@ -18,104 +18,35 @@
         </div>
       </form>
 
-      <ul class="nav nav-tabs">
-        <li class="nav-item" @click="listarPublicos" v-if='!selectOption'>
-          <a class="nav-link small text-uppercase active">Publico</a>
+      <!-- SELECCIONADOR DE POST PUBLICOS Y PRIVADOS -->
 
-        </li>
-        <li class="nav-item" @click="listarPrivados" v-if="selectOption">
-          <a class="nav-link small text-uppercase">Privado</a>
-        </li>
-      </ul>
-        <!-- <li class="nav-item"><a data-toggle="tab" class="nav-link small text-uppercase active">Público</a>
-          <article v-for="post in posts" v-bind:key="post['.key']">
-            <div v-if="post.type == 'Público'">
-              <h1>{{ post.postUser }}</h1>
-            </div>
-          </article>
-        </li>
-        <li class="nav-item"><a data-toggle="tab" class="nav-link small text-uppercase">Privado</a>
-          <article v-for="post in posts" v-bind:key="post['.key']">
-            <div v-if="post.type == 'Privado'">
-              <h1>{{ post.postUser }}</h1>
-            </div>
-          </article>
-        </li>
-      </ul> -->
     </div>
-    <div class="posts" @click="cambiarEstado" v-for="post in filterPost">
-      <div>
-        <div class="card mt-5">
-          <div class="card-block">
-            <section class="post-heading">
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="media">
-                    <div class="media-left divPhoto">
-                      <a>
-                        <img style="width:70px; height:auto; border-radius:50px" :src="post.userProfile.foto" alt="fotoUsuario">
-                      </a>
-                    </div>
-                    <div class="media-body">
-                      <a class="anchor-username"><h4 class="media-heading">{{ post.postUser }}</h4></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-            <section class="post-body">
-              <div class="post-message">
-                <textarea style="display:none; width:355px; heigth:30px">></textarea>
-              </div>
-            </section>
-            <section class="post-footer">
-              <hr>
-              <div class="post-footer-option container">
-                <a href="#">
-                  <i style="heigth:5px" class="fa fa-heart-o"></i>
-                </a><b></b>
-                <button class="btn btn-primary btn-sm">Editar</button>
-                <button style="display:block" class="btn btn-primary btn-sm">Guardar</button>
-                <button  class="btn btn-primary btn-sm">Eliminar</button>
-              </div>
-            </section>
-          </div>
-        </div>
-      </div>
-    </div>
-
 </div>
 </template>
 
 <script>
 import firebase from 'firebase'
-import dataFirebase from '@/main'
+// import dataFirebase from '@/main'
 import { postRef } from '@/main'
-import HelloWorld from '@/components/HelloWorld'
 import { db } from '@/main'
 
 let userProfile = {}
 
 export default {
-  name:'Post',
-  data(){
-    return{
-      newPosts: null,
-      name: "",
-      photo: "",
-      selectOption: true,
-      posts : []
-    }
-  },
-  firestore() {
+  name: 'Post',
+  data () {
     return {
-      posts : db.collection("posts").orderBy('createdAt')
+      newPosts: null,
+      name: '',
+      photo: '',
+      selectOption: true,
+      posts: []
     }
   },
-  created(){
-    let vm = this;
-    let userUid = firebase.auth().currentUser.uid;
-    firebase.database().ref("Users/" + userUid).on("value", userRef => {
+  created () {
+    let vm = this
+    let userUid = firebase.auth().currentUser.uid
+    firebase.database().ref('Users/' + userUid).on('value', userRef => {
       let user = userRef.val()
       userProfile = user
       vm.user = user
@@ -124,65 +55,21 @@ export default {
       vm.uid = vm.user.uid
     })
   },
-  computed: {
-    filterPost() {
-      let userUid = firebase.auth().currentUser.uid;
-
-      return this.posts.filter(el => {
-        if (this.selectOption && el.type === 'Privado' && el.userProfile.uid === userUid) return el
-        if (!this.selectOption && el.type === 'Público') return el
-      })
-    }
-  },
   methods: {
-    cambiarEstado(){
-      if (this.posts.type === Privado) {
-
+    cambiarEstado () {
+      if (this.posts.type === 'Privado') {
       }
     },
-     listarPrivados() {
-
-     // if(this.selectOption === true){
-     // }
-        // let query = db.collection("posts")
-                        // .where("type", "==", "Privado")
-                        // .where("userProfile.uid","==",`${userProfile.uid}`)
-                        // .orderBy("createdAt","desc")
-         // query.onSnapshot(postSnapshot =>  filterPost(postSnapshot))
-    },
-     listarPublicos() {
-       alert('publico')
-       if (!this.selectOption) {
-         this.filterPost
-       }
-        // let query = db.collection("posts")
-        //                 .where("type", "==", "Público")
-        //                 .orderBy("createdAt","desc")
-        // query.onSnapshot((postSnapshot) => {
-        //     filterPost(postSnapshot)
-        // })
-    },
-    addPost(newPosts, selectOption){
-      db.collection("posts").add({
-          postUser: newPosts,
-          userProfile: userProfile,
-          like: 0,
-          type: selectOption,
-          createdAt: new Date(),
-        })
-        this.newPosts = ''
+    addPost (newPosts, selectOption) {
+      db.collection('posts').add({
+        postUser: newPosts,
+        userProfile: userProfile,
+        like: 0,
+        type: selectOption,
+        createdAt: new Date()
+      })
+      this.newPosts = ''
     }
-
-    // postPrivado (){
-    //   this.posts = this.posts.filter(post=>{
-    //     return posts.type="Privado"
-    //   })
-    // },
-    // postPublico: function() {
-    //   this.posts = this.posts.filter(function(post1) {
-    //     return post1.type === "Público"
-    //   })
-    // }
   }
 }
 

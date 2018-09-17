@@ -70,10 +70,9 @@ export default {
           photoURL: 'http://subirimagen.me/uploads/20180725011911.png'
         }
         dataFirebase.guardaDatos(usuario)
-        dataFirebase.verificar();
-        this.$router.replace('hello')
-      })
-      .catch(error => alert('opps' + error.message))
+        dataFirebase.verificar()
+          this.$router.replace('hello')
+        }).catch(error => alert('opps' + error.message))
     }
   }
 }

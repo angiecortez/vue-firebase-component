@@ -22,53 +22,46 @@
     <!-- <button v-on:click="logout">Logout</button> -->
     <Navbar/>
     <Post/>
-    <PostPublico/>
-
-
+    <Listado/>
 
   </div>
 </template>
 
 <script>
-// let userProfile = {}
-
-import dataFirebase from '@/main'
+// import dataFirebase from '@/main'
 import firebase from 'firebase'
 import Post from '@/components/Post'
-import PostPublico from '@/components/PostPublico'
 import Navbar from '@/components/Navbar'
+import Listado from '@/components/Listado'
 export default {
   name: 'HelloWorld',
   data () {
     return {
-      // msg: 'Welcome to Your Vue.js App'
       name: '',
       photo: ''
     }
   },
-  created(){
+  created () {
     let vm = this
-    let userUid = firebase.auth().currentUser.uid;
+    let userUid = firebase.auth().currentUser.uid
     firebase.database().ref('Users/' + userUid).on('value', (userRef) => {
-      let user = userRef.val();
-      // userProfile = user
+      let user = userRef.val()
       vm.user = user
       vm.name = vm.user.nombre
       vm.photo = vm.user.foto
     })
   },
   methods: {
-    logout: function(){
-      firebase.auth().signOut().then(()=> this.$router.replace('login'))
+    logout: function () {
+      firebase.auth().signOut().then(() => this.$router.replace('login'))
     }
   },
   components: {
     Post,
-    PostPublico,
-    Navbar
+    Navbar,
+    Listado
   }
 }
-
 
 </script>
 

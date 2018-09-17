@@ -9,7 +9,7 @@ import Vuefire from 'Vuefire'
 
 Vue.config.productionTip = false
 
-let app;
+let app
 Vue.use(Vuefire)
 let config = {
   apiKey: "AIzaSyCt3mRnncuAu3A0hi2yxxyGEFwX7hBioZ4",
@@ -21,7 +21,7 @@ let config = {
 }
 firebase.initializeApp(config)
 firebase.auth().onAuthStateChanged(user => {
-  if(!app){
+  if (!app) {
     /* eslint-disable no-new */
     app = new Vue({
       el: '#app',
@@ -36,44 +36,41 @@ const guardaDatos = (user) => {
     uid: user.uid,
     nombre: user.displayName,
     email: user.email,
-    foto: user.photoURL,
+    foto: user.photoURL
   }
-  firebase.database().ref('Users/' + user.uid)
-  .set(usuario)
-  // db.collection('users').doc(setUser.id).set(setUser);
-
-};
+  firebase.database().ref('Users/' + user.uid).set(usuario)
+}
 const verificar = () => {
-  let user = firebase.auth().currentUser;
+  let user = firebase.auth().currentUser
   user.sendEmailVerification().then(() => {
-    alert('enviando correo');
+    alert('enviando correo')
   }).catch((error) => {
-    console.log(error);
-  });
-};
+    console.log(error)
+  })
+}
 const validadorNombre = (name) => {
-    if ((/^([A-Za-z0-9\s]{8,})+$/g.test(name))) {
-        return true
-    } else {
-        return false
-    };
-};
+  if ((/^([A-Za-z0-9\s]{8,})+$/g.test(name))) {
+    return true
+  } else {
+    return false
+  }
+}
 const validadorEmail = (email) => {
-    if (/^([a-zA-Z0-9._-]{3,})+@([a-zA-Z0-9.-]{5,})+\.([a-zA-Z]{2,})+$/.test(email)) {
-        return true;
-    } else {
-        return false;
-    };
-};
+  if (/^([a-zA-Z0-9._-]{3,})+@([a-zA-Z0-9.-]{5,})+\.([a-zA-Z]{2,})+$/.test(email)) {
+    return true
+  } else {
+    return false
+  }
+}
 const validadorPassword = (password) => {
-    if (/^([A-Za-z0-9]{8,})+$/g.test(password)) {
-        return true;
-    } else {
-        return false;
-    };
-};
+  if (/^([A-Za-z0-9]{8,})+$/g.test(password)) {
+    return true
+  } else {
+    return false
+  }
+}
 export const db = firebase.firestore()
 db.settings({
-  timestampsInSnapshots: true,
-});
+  timestampsInSnapshots: true
+})
 export default { guardaDatos, verificar, validadorNombre, validadorEmail, validadorPassword }
