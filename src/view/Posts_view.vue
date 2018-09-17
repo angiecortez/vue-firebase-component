@@ -10,14 +10,14 @@
         <p class="data__type">Tipo: {{ post.type }}</p>
         <p class="data__email">Email: {{ post.userProfile.email }}</p>
         <div class="data__post">
-          <p :contenteditable='editar'>{{ post.postUser }}</p>
+          <p :contenteditable='guardar' v-model="publicacion">{{ post.postUser }}</p>
         </div>
         <!-- <div class="data__like">Me gusta {{ post.id }}</div> -->
         <button @click="countLikes(post)">Me gusta {{ post.like }}</button>
 
         <section v-if="compareId(post)">
-          <button @click="editar1" type="button" v-if="editar" class="btn btn-primary btn-sm">Guardar</button>
-          <button @click="guardar1" type="button" v-if="guardar" class="btn btn-primary btn-sm">Editar</button>
+          <button @click="editar1" type="button" v-if="editar" class="btn btn-primary btn-sm">Editar</button>
+          <button @click="guardar1(post)" type="button" v-if="guardar" class="btn btn-primary btn-sm">Guardar</button>
           <button @click="eliminarPost(post)" type="button" class="btn btn-primary btn-sm">Eliminar</button>
         </section>
       </div>
@@ -35,7 +35,8 @@ export default {
     return {
       editar: true,
       guardar: false,
-      editando: false
+      editando: false,
+      publicacion: ''
     }
   },
   methods: {
@@ -64,13 +65,24 @@ export default {
       this.editar = false
       this.guardar = true
     },
-    guardar1 () {
+    guardar1 (post) {
       this.editando = false
       this.editar = true
       this.guardar = false
+      const confirmado = confirm('Estas seguro de Editar la publicación')
+      if (confirmado) {
+        db.collection("posts").doc(post.id).update({
+          post: this.publicacion
+        }).then(() => {
+          console.log('Document successfully updated!')
+        }).catch((error) => {
+          console.error('Error updating document: ', error)
+        })
+      }
     }
   }
 }
+
 </script>
 
 <style scoped>
