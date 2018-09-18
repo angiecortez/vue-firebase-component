@@ -1,36 +1,47 @@
 <template>
-  <div>
-    <!-- <h1>{{ msg }}</h1> -->
-    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img class="d-block w-100" src="@/image/imagenRenovable.jpg" alt= "First slide">
-        </div>
-        <div class="carousel-item">
-          <img class="d-block w-100" src="@/image/recicla.jpg" alt="Second slide">
-        </div>
-        <div class="carousel-item">
-          <img class="d-block w-100" src="@/image/sequia.jpeg" alt="Third slide">
-        </div>
-      </div>
-      <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
+  <div class="slider">
+    <ul>
+      <li><img src="@/image/imagenRenovable.jpg" alt=""></li>
+      <li><img src="@/image/recicla.jpg" alt=""></li>
+      <li><img src="@/image/sequia.jpeg" alt=""></li>
+    </ul>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Carrussel',
-  data () {
-    return {
-    }
-  }
+  name: 'Carrussel'
 }
 </script>
+<style>
+  .slider{
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+  }
+  .slider ul{
+    display: flex;
+    padding: 0;
+    width: 400%;
+    animation: cambio 15s infinite alternate;
+    animation-timing-function: ease-in-out;
+  }
+  .slider li{
+    list-style: none;
+    width: 100%;
+  }
+  .slider img{
+    width: 100%;
+  }
+  @keyframes cambio{
+    0% { margin-left: 0;}
+    20% { margin-left: 0;}
+    25% { margin-left: -100%;}
+    45% { margin-left: -100%;}
+    50% { margin-left: -200%;}
+    70% { margin-left: -200%;}
+    75% { margin-left: -300%;}
+    100% { margin-left: -300%;}
+  }
+
+</style>
