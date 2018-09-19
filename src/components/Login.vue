@@ -84,7 +84,7 @@ export default {
 </script>
 <style>
 .login {
-  background: url(../image/image.png) no-repeat;
+  background: url(http://subirimagen.me/uploads/20180919160048.png) no-repeat;
   background-size: cover;
 }
 #formLogin {
@@ -140,7 +140,7 @@ span.psw {
 }
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 750px) {
-  form {
+  #formLogin {
     width: 60%;
     margin: 0% 20%;
   }
@@ -153,7 +153,7 @@ span.psw {
   .cancelbtn {
     width: 100%;
   }
-  form {
+  #formLogin {
     width: 100%;
     margin: 0% 0%;
   }
