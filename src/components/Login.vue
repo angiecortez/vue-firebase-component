@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-  <form action="/action_page.php">
+  <form action="/action_page.php" id="formLogin">
   <div class="imgcontainer">
     <img src="@/image/login.png" alt="Avatar" class="avatar">
   </div>
@@ -12,15 +12,15 @@
     <label for="psw"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="psw" v-model="password" required>
 
-    <button type="submit" v-on:click="login" >Login</button>
+    <button type="submit" class='buttonLogin' v-on:click="login" >Login</button>
     <label>
       <input type="checkbox" checked="checked" name="remember"> Remember me
     </label>
   </div>
 
   <div class="container" style="background-color:#f1f1f1">
-    <button type="button" class="cancelbtn" v-on:click="facebook">Facebook</button>
-    <button type="button" class="cancelbtn" v-on:click="gmail" >Gmail</button>
+    <button type="button" class="buttonLogin"  id='LoginFace' v-on:click="facebook">Facebook</button>
+    <button type="button" class="buttonLogin" id='LoginGmail' v-on:click="gmail" >Gmail</button>
     <p>No tienes cuenta? <router-link to="/signup">Crea una aqui tu cuenta</router-link></p>
     <!-- <span class="psw">No tienes cuenta ? <router-link to="/signup">Crea una cuenta aqui</router-link></span> -->
   </div>
@@ -87,7 +87,7 @@ export default {
   background: url(../image/image.png) no-repeat;
   background-size: cover;
 }
-form {
+#formLogin {
   border: 3px solid #f1f1f1;
   width: 30%;
   margin: 0% 35%;
@@ -101,7 +101,7 @@ input[type="password"] {
   border: 1px solid #ccc;
   box-sizing: border-box;
 }
-button {
+.buttonLogin {
   background-color: #4caf50;
   color: white;
   padding: 14px 20px;
@@ -113,7 +113,12 @@ button {
 button:hover {
   opacity: 0.8;
 }
-.cancelbtn {
+#LoginFace {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+#LoginGmail {
   width: auto;
   padding: 10px 18px;
   background-color: #f44336;
