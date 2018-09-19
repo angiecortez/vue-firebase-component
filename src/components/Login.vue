@@ -84,7 +84,7 @@ export default {
 </script>
 <style>
 .login {
-  background: url(../image/image.png) no-repeat;
+  background: url(http://subirimagen.me/uploads/20180919160048.png) no-repeat;
   background-size: cover;
 }
 #formLogin {
