@@ -1,51 +1,26 @@
 <template>
   <div class="signup">
-<!--     <div class="col-sm-8 main-section">
-      <div class="modal-content">
-        <div class="col-12 form-input">
-          <form>
-            <div class="form-group">
-              <i class="material-icons prefixo">person</i>
-              <input class="form-control" type="text" v-model="name" placeholder="Nombre">
-            </div>
-            <div class="form-group">
-              <i class="material-icons prefixo">email</i>
-              <input class="form-control" type="email" v-model="email" placeholder="Email">
-            </div>
-            <div class="form-group">
-              <i class="material-icons prefixo">lock</i>
-              <input type="password" class="form-control" v-model="password" placeholder="Ingresa tu contraseña">
-            </div>
-            <button v-on:click="signUp" class="btn btn-success">Registrate</button><br>
-          </form>
-        </div>
-        <span>Ya tienes una cuenta <router-link to="/login">Vamos!!!</router-link></span>
-      </div>
-    </div> -->
   <form action="/action_page.php" id="formSingUp">
   <div class="imgcontainer">
     <img src="@/image/login.png" alt="Avatar" class="avatar">
   </div>
-
   <div class="container">
     <label for="uname"><b>Nombre</b></label>
-    <input type="text" v-model="name" placeholder="Nombre" name="uname" required>
+    <input type="text" v-model="name" placeholder="Nombre" name="uname" >
 
     <label for="uname"><b>Email</b></label>
-    <input type="email" v-model="email" placeholder="Email" name="uname" required>
+    <input type="email" v-model="email" placeholder="Email" name="uname">
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" v-model="password" required>
+    <input type="password" placeholder="Enter Password" name="psw" v-model="password" >
 
-    <button type="submit" class='buttonSignUp' v-on:click="signUp" >Registrate</button>
+    <button class='buttonSignUp' v-on:click="signUp" >Registrate</button>
     <label>
       <input type="checkbox" checked="checked" name="remember"> Remember me
     </label>
   </div>
-
   <div class="container" style="background-color:#f1f1f1">
-    <p>No tienes cuenta? <router-link to="/login">Vamos !!</router-link></p>
-    <!-- <span class="psw">No tienes cuenta ? <router-link to="/signup">Crea una cuenta aqui</router-link></span> -->
+    <p>No tienes cuenta? <router-link to="/login">Vamos !!</router-link></p>   
   </div>
 </form>
 
@@ -65,7 +40,7 @@ export default {
     }
   },
   methods: {
-    signUp: function () {
+    signUp: function (e) {
       firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
         .then(result => {
           let user = result.user
@@ -78,7 +53,10 @@ export default {
           dataFirebase.guardaDatos(usuario)
           dataFirebase.verificar()
           this.$router.replace('hello')
-        }).catch(error => alert('opps' + error.message))
+          console.log('exito')
+        }).catch(error => console.log('Error huacala' + error.message))
+        e.preventDefault();
+        
     }
   }
 }
