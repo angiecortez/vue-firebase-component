@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="menu__tab">
-      <a v-bind:class="{ active: selectOption }"
+      <a v-bind:class="{ active: selectOptionView }"
          @click="selectOptionView = true"
          class="nav-link small text-uppercase active">Privado</a>
 
