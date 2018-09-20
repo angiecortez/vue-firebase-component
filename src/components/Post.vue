@@ -156,28 +156,27 @@ h2 {
   font-size: 1em;
 }
 .selectOption {
-  display: block;
-  width: 80%;
+
+  width: 60%;
   height: 30px;
-  padding: 12px 12px 12px 30px;
+  /* padding: 12px 12px 12px 30px; */
   margin: 14px;
-  font-size: 14px;
+  font-size: 14px; 
   line-height: 1.42857143;
   color: #555;
   background-color: #fff;
-  background-image: none;
+  background-image: block;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 4px;  
 }
 .btnPublicar{
   margin: 14px;
   background-color: rgba(59, 230, 125, 0.849);
   border: #2ecc71;
   border-radius: 4px;
-  width: 40%;
+  width: 60%;
   height: 80%;
   text-align: center;
   color: #035023
-
 }
 </style>
