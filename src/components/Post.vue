@@ -1,42 +1,21 @@
 <template>
   <div class="col-8 ml-5">
-   <!--     <br>
-    <div id="divPostsArea" class="form-post hiden">
-      <form @submit.prevent="addPost()">
-        <div class="form-group">
-          <label for="txtAreaPost">
-            <b>Ideas para compartir</b>
-          </label>
-          <textarea v-model="newPosts" name="txtAreaPost" id="txtAreaPost" class="form-control form-textArea-rounded"
-            placeholder="¿Que ideas tienes?"></textarea>
-          <label for="sltPostType">Tipo de Post:</label>
-          <select v-model="selectOption" id="sltPostType" class="form-control">
-            <option>Público</option>
-            <option>Privado</option>
-          </select>
-          <button type="submit" class="btn btn-primary form-btn">Publicar</button>
-        </div>
-      </form>
-    </div> -->
-<form class="formoid-solid-light-green" style=""
-	 method="post">
+ <br>
+<form class="formoid-solid-light-green" style="" method="post" @submit.prevent="addPost()" >
 		<div class="title">
-			<h2>Pública un Comentario</h2>
+			<h2>Ideas para compartir</h2>
 		</div>
 		<div class="element-textarea"><label class="title"></label>
-			<div class="item-cont"><textarea class="small" name="textarea" cols="20" rows="5" placeholder="Escribe Comentario"></textarea><span
+			<div class="item-cont"><textarea  v-model="newPosts" class="small" name="textarea" cols="20" rows="5" placeholder="Escribe Comentario"></textarea><span
 				 class="icon-place"></span></div>
 		</div>
-		<div class="element-select"><label class="title"></label>
-			<div class="item-cont">
-				<div class="medium"><span><select name="select">
-
-							<option value="Público">Público</option>
-							<option value="Privado">Privado</option>
-						</select><i></i><span class="icon-place" ></span></span></div>
-			</div>
-		</div>
-		<div class="submit"><input type="submit" value="Submit" /></div>
+        <select v-model="selectOption" name="select" class="selectOption" >
+					<option value="Público">Público</option>
+					<option value="Privado">Privado</option>
+				</select>
+		<div class="submit">
+       <button type="submit" class="btnPublicar">Publicar</button>
+    </div>
 	</form>
 </div>
 </template>
@@ -94,23 +73,6 @@ export default {
 </script>
 
 <style>
-.post {
-  align-content: center;
-  background-color: #bbf5a9;
-}
-.postUser {
-  padding: 15px 0 0 0;
-  color: #0ca119;
-  background-color: #f5f835;
-  margin-left: 300px;
-  margin-right: 300px;
-  margin-top: 12px;
-  padding-top: 17px;
-}
-.texto {
-  width: 80%;
-  height: 50px;
-}
 .formoid-solid-light-green {
   background-color: #ffffff;
   font-size: 14px;
@@ -167,6 +129,7 @@ h2 {
   margin-right: 25px;
   margin: 8px;
   display: block;
+  resize: none;
 }
 .formoid-solid-light-green textarea.small {
   width: 100%;
@@ -190,8 +153,31 @@ h2 {
   box-sizing: border-box;
   -webkit-appearance: none;
   -moz-appearance: none;
-  appearance: normal;
   font-size: 1em;
 }
+.selectOption {
+  display: block;
+  width: 80%;
+  height: 30px;
+  padding: 12px 12px 12px 30px;
+  margin: 14px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.btnPublicar{
+  margin: 14px;
+  background-color: rgba(59, 230, 125, 0.849);
+  border: #2ecc71;
+  border-radius: 4px;
+  width: 40%;
+  height: 80%;
+  text-align: center;
+  color: #035023
 
+}
 </style>

@@ -6,7 +6,7 @@
         <div id="content" class="navbar-brand1"></div>
         <div class="media">
           <div class="media-left divPhoto">
-          <img src="@/image/icon.png" class="media-object photo-profile"  style="width:70px; height:auto; border-radius:50px" alt="">
+          <img src="http://subirimagen.me/uploads/20180920144159.887d715" class="media-object photo-profile"  style="width:70px; height:auto; border-radius:50px" alt="">
             <a class="navbar-brand">Ambientalist Lover</a>
           </div>
         </div>
