@@ -65,12 +65,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.margen{
-	margin-left: 50px;
-	margin-top: 30px;
+.margen {
+margin-left: 50px;
+margin-top: 30px;
 }
-.navbar-brand1{
-	margin-left: 180px;
+.navbar-brand1 {
+margin-left: 180px;
 }
 h1, h2 {
   font-weight: normal;

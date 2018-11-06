@@ -20,47 +20,47 @@
         </label>
       </div>
       <div class="container" style="background-color:#f1f1f1">
-        <p>No tienes cuenta? <router-link to="/login">Vamos !!</router-link></p>        
+        <p>No tienes cuenta? <router-link to="/login">Vamos !!</router-link></p>
       </div>
     </form>
   </div>
 </template>
 <script>
-import firebase from "firebase";
-import dataFirebase from "@/main";
+import firebase from 'firebase'
+import dataFirebase from '@/main'
 
 export default {
-  name: "signUp",
+  name: 'signUp',
   data: () => {
     return {
-      name: "",
-      email: "",
-      password: ""
-    };
+      name: '',
+      email: '',
+      password: ''
+    }
   },
   methods: {
-    signUp: function(e) {
+    signUp (e) {
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
         .then(result => {
-          let user = result.user;
+          let user = result.user
           const usuario = {
             uid: result.user.uid,
             displayName: this.name,
             email: user.email,
-            photoURL: "http://subirimagen.me/uploads/20180725011911.png"
-          };
-          dataFirebase.guardaDatos(usuario);
-          dataFirebase.verificar();
-          this.$router.replace("hello");
-          console.log("exito");
+            photoURL: 'http://subirimagen.me/uploads/20180725011911.png'
+          }
+          dataFirebase.guardaDatos(usuario)
+          dataFirebase.verificar()
+          this.$router.replace('hello')
+          console.log('exito')
         })
-        .catch(error => console.log("Error huacala" + error.message));
-      e.preventDefault();
+        .catch(error => console.log('Error huacala' + error.message))
+      e.preventDefault()
     }
   }
-};
+}
 </script>
 <style>
 .signup {

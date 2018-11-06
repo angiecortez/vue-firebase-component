@@ -98,7 +98,6 @@ export default {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-	margin-left: 20%;
 }
 .user__data {
   flex-grow: 1;
