@@ -22,65 +22,64 @@
     <button type="button" class="buttonLogin"  id='LoginFace' v-on:click="facebook">Facebook</button>
     <button type="button" class="buttonLogin" id='LoginGmail' v-on:click="gmail" >Gmail</button>
     <p>No tienes cuenta? <router-link to="/signup">Crea una aqui tu cuenta</router-link></p>
-    <!-- <span class="psw">No tienes cuenta ? <router-link to="/signup">Crea una cuenta aqui</router-link></span> -->
   </div>
 </form>
   </div>
 </template>
 <script>
-import firebase from "firebase";
-import dataFirebase from "@/main";
+import firebase from 'firebase'
+import dataFirebase from '@/main'
 export default {
-  name: "login",
-  data() {
+  name: 'login',
+  data () {
     return {
-      email: "",
-      password: ""
-    };
+      email: '',
+      password: ''
+    }
   },
   methods: {
-    login: function() {
+    login () {
       firebase
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
         .then(user =>
           alert(
-            "Bien hecho, ahora estas conectado",
-            this.$router.replace("hello")
+            'Bien hecho, ahora estas conectado',
+            this.$router.replace('hello')
           )
         )
-        .catch(error => alert(error, "error.message"));
+        .catch(error => alert(error, 'error.message'))
     },
-    facebook: function() {
-      let provider = new firebase.auth.FacebookAuthProvider();
+    facebook () {
+      let provider = new firebase.auth.FacebookAuthProvider()
       provider.setCustomParameters({
-        display: "popup"
-      });
+        display: 'popup'
+      })
       firebase
         .auth()
         .signInWithPopup(provider)
         .then(result => {
-          const user = result.user;
-          dataFirebase.guardaDatos(user);
-          this.$router.replace("hello");
+          const user = result.user
+          dataFirebase.guardaDatos(user)
+          this.$router.replace('hello')
         })
         .catch(error => {
-          alert("err" + error.message);
-        });
+          alert('err' + error.message)
+        })
     },
-    gmail: function() {
-      let provider = new firebase.auth.GoogleAuthProvider();
+    gmail () {
+      let provider = new firebase.auth.GoogleAuthProvider()
       firebase
         .auth()
         .signInWithPopup(provider)
         .then(result => {
-          let user = result.user;
-          dataFirebase.guardaDatos(user);
-          this.$router.replace("hello");
-        });
+          let user = result.user
+          dataFirebase.guardaDatos(user)
+          this.$router.replace('hello')
+        })
     }
   }
-};
+}
 </script>
 <style>
 .login {
