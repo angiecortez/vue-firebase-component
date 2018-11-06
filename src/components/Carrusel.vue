@@ -7,10 +7,7 @@
           <img class="d-block w-100" src="http://subirimagen.me/uploads/20181106104211.jpg" alt= "First slide">
         </div>
         <div class="carousel-item">
-          <img class="d-block w-100" src="@/image/recicla.jpg" alt="Second slide">
-        </div>
-        <div class="carousel-item">
-          <img class="d-block w-100" src="@/image/sequia.jpeg" alt="Third slide">
+          <img class="d-block w-100" src="http://subirimagen.me/uploads/20181106104503.jpg" alt="Second slide">
         </div>
       </div>
       <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
