@@ -11,15 +11,13 @@
         <p class="data__email">Email: {{ post.userProfile.email }}</p>
         <div class="data__post">
           <p @keyup.enter="guardar1(post)" :id="post.id">{{ post.postUser }}</p>
-          <!-- <p :contenteditable='guardar' @keyup.enter="guardar1(post)" :id="post.id">{{ post.postUser }}</p> -->
         </div>
-        <!-- <div class="data__like">Me gusta {{ post.id }}</div> -->
-        <button @click="countLikes(post)">Me gusta {{ post.like }}</button>
-        <section v-if="compareId(post)">
-          <button @click="editar1(post)" type="button" :id="post.id+'btnEditar'" class="btn btn-primary btn-sm">Editar</button>
-          <button @click="guardar1(post)" type="button" style="display:none" :id="post.id+'btnGuardar'" class="btn btn-primary btn-sm">Guardar</button>
-          <button @click="eliminarPost(post)" type="button" class="btn btn-primary btn-sm">Eliminar</button>
-        </section>
+        <button class="btn btn-success" @click="countLikes(post)">Me gusta {{ post.like }}</button>
+        <!-- <section v-if="compareId(post)"> -->
+          <button v-if="compareId(post)" @click="editar1(post)" type="button" :id="post.id+'btnEditar'" class="btn btn-primary">Editar</button>
+          <button v-if="compareId(post)" @click="guardar1(post)" type="button" style="display:none" :id="post.id+'btnGuardar'" class="btn btn-primary">Guardar</button>
+          <button v-if="compareId(post)" @click="eliminarPost(post)" class="btn btn-primary">Eliminar</button>
+        <!-- </section> -->
       </div>
     </div>
   </div>
@@ -43,7 +41,6 @@ export default {
       let r = confirm('Estas seguro de Eliminar la publicación')
       if (r) {
         db.collection('posts').doc(post.id).delete().then(() => {
-          console.log('Document successfully deleted!')
         }).catch((error) => {
           console.error('Error removing document: ', error)
         })
@@ -101,6 +98,7 @@ export default {
   width: 100px;
   height: 100px;
   border-radius: 50%;
+	margin-left: 20%;
 }
 .user__data {
   flex-grow: 1;

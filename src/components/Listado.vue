@@ -3,17 +3,17 @@
     <div class="menu__tab">
       <a v-bind:class="{ active: selectOptionView }"
          @click="selectOptionView = true"
-         class="nav-link small text-uppercase active">Privado</a>
+         class="nav-link small text-uppercase active">Público</a>
 
       <a v-bind:class="{ active: selectOptionView }"
          @click="selectOptionView = false"
-         class="nav-link small text-uppercase">Publico</a>
+         class="nav-link small text-uppercase">Privado</a>
     </div>
     <div v-if="selectOptionView">
-      <posts title="Privados" :posts="postsPrivado"></posts>
+      <posts title="Públicos" :posts="postsPublico"></posts>
     </div>
     <div v-else>
-      <posts title="Públicos" :posts="postsPublico"></posts>
+      <posts title="Privados" :posts="postsPrivado"></posts>
     </div>
   </div>
 </template>
@@ -45,7 +45,6 @@ export default {
       postsPublico: db.collection('posts').where('type', '==', 'Público')
     }
   },
-
   components: {
     posts: posts_view
   }

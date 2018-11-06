@@ -6,22 +6,21 @@
         <div id="content" class="navbar-brand1"></div>
         <div class="media">
           <div class="media-left divPhoto">
-          <img src="http://subirimagen.me/uploads/20180920144159.887d715" class="media-object photo-profile"  style="width:70px; height:auto; border-radius:50px" alt="">
+          <img class="navbar-brand1" src="http://subirimagen.me/uploads/20180920144159.887d715"  style="width:70px; height:auto; border-radius:50px" alt="">
             <a class="navbar-brand">Ambientalist Lover</a>
           </div>
         </div>
           <div class="form-inline">
-            <img  :src="photo"  style="width:70px; height:auto; border-radius:50px" alt="Foto">
-            <p>{{ name }}</p>
+            <img  :src="photo" style="width:60px; height:auto; border-radius:50px; margin-right: 20px;" alt="Foto">
+            <p style="margin-right: 20px;">{{ name }}</p>
             <button id="close" v-on:click="logout" class="btn btn-info my-2 my-sm-0 ml-2 hiden">Cerrar sesión</button>
           </div>
         </nav>
       </div>
     </header>
-    <!-- <button v-on:click="logout">Logout</button> -->
     <Carrusel/>
     <Post/>
-    <Listado/>
+    <Listado class="margen"/>
 
   </div>
 </template>
@@ -66,6 +65,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.margen{
+	margin-left: 50px;
+	margin-top: 30px;
+}
+.navbar-brand1{
+	margin-left: 180px;
+}
 h1, h2 {
   font-weight: normal;
 }

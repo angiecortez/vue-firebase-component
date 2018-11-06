@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-  <form action="/action_page.php" id="formLogin">
+  <form id="formLogin">
   <div class="imgcontainer">
     <img src="@/image/login.png" alt="Avatar" class="avatar">
   </div>
